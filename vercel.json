@@ -8,7 +8,7 @@
         { "key": "Cache-Control", "value": "no-cache" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Bertybots-Version", "value": "BB 0.0.1" }
+        { "key": "X-Bertybots-Version", "value": "BB 0.1.0" }
       ]
     }
   ]
