@@ -1,6 +1,6 @@
 # Berty's Botz changelog (structured)
 
-**Chip: BB 0.0.1** · 2026-09-17 · channel **spec** · not playable  
+**Chip: BB 0.1.0** · 2026-09-17 · channel **live**  
 Source of truth: `js/version.js` + this file.  
 If the intern and an old zip disagree, the chip wins.
 
@@ -14,7 +14,7 @@ English notes for the period board. Teachers do not need to code.
 | --- | --- | --- |
 | Spec / scaffold | `BB 0.0.x` | Repo only. No cart. |
 | Debug drop | `BB 0.1.0-d3` | Workshop / intern. Chip must say **DEBUG**. Not the classroom URL. |
-| Live classroom | `BB 0.1.0` | `tw.kulibert.net/bertybots/` after GO. |
+| Live classroom | `BB 0.1.0` | `tw.kulibert.net/bertybots/` after it is copied to the cart. |
 
 Rules:
 
@@ -23,31 +23,49 @@ Rules:
 3. Debug increments the `-dN` suffix (`-d1`, `-d2`…). Do not skip. Do not reuse.
 4. Promote a debug train by dropping `-dN` and writing the teacher notes for that live number.
 5. Never leave DEBUG on the projector. Hard refresh (Ctrl+Shift+R) if a cart still shows an old chip.
-6. Student `.bertybots.json` may store `app` + `format` + `title` only. No names. Optional `appVersion` is the chip string, not a person.
-7. Do not graft Fantastic Contraption assets, level XML, or `fcsim`.
+6. Student `.bertybots.json` may store `app` + `format` + `title` only. No names.
+7. Do not graft third-party game assets, official layouts, or `fcsim`.
 
 ---
 
-## Current train (0.0.x spec)
+## Current train (0.1.x live)
+
+### 0.1.0 — Playable shop — 2026-09-17
+
+Students can:
+
+- Build on the Shop Floor with Drive-R, Drive-L, Roller, Steel Bar, Ghost Bar
+- Play / Stop (Space). Stop puts the shop back the way they left it
+- Save / Open a local `.bertybots.json` (level + machine, no names)
+- Author a course: Shop Floor, Drop Zone, slabs, Bot Core
+- Try three starter courses: Roll Out, Up the Curb, Mind the Pit
+- Clear machine without wiping the course
+
+Shop look is navy / orange / paper / crate. Wheels are stamped R / L / O. Bot Core is a crate. Not affiliated with Northway Games.
+
+Physics: Planck.js 0.3.14. Ghost Bar hits the world and the crate, not the rest of the machine. Win = every crate center inside the Drop Zone for one second.
+
+**Cap:** 48 parts. **Keys:** 1–5 tools, M move, E erase, Space play/stop.
+
+Serve the folder over http(s), not `file://`.
+
+Full playable tree: classroom pack `BertysBotz-0.1.0.zip` / folder `BertysBotz/`.
+
+---
+
+## Earlier
 
 ### 0.0.1 — Repo + law — 2026-09-17
-Public repo. Privacy page. Local-save / no-names / student level-author rules written down. Original navy/orange shop look specified. Not affiliated with Northway Games.
 
-**Not playable.** No canvas yet.
+Public repo. Privacy page. Product rules written down. Not playable.
 
 ---
 
-## Next train (not started)
+## Next
 
-### 0.1.0-d1 — Playground debug (planned)
-Planck world, five parts, snap, Play / Stop restores shop, Save / Open `.bertybots.json`. Chip: `BB 0.1.0-d1 DEBUG`.
+### 0.2.0 — Full original 12-level pack (planned)
 
-### 0.1.0 — Playground live (planned)
-Same job, boringly stable on a Chromebook. Chip: `BB 0.1.0`.
-
-### 0.2.0 — Original 12-level pack (planned)
-
-### 0.3.0 — Student level editor (planned)
+### 0.3.0 — Level editor polish + slow-mo replay (planned)
 
 ---
 
@@ -55,6 +73,6 @@ Same job, boringly stable on a Chromebook. Chip: `BB 0.1.0`.
 
 - Student names, aliases, roster ids, class codes in JSON
 - Accounts, analytics, public design gallery
-- Copied third-party art, colors-as-trade-dress, official layouts from other games
-- Magnets, springs, moving platforms (later unit, not this train)
+- Copied third-party art or official layouts from other games
+- Magnets, springs, moving platforms
 - WASM / `fcsim` fork
