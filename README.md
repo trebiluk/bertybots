@@ -10,6 +10,8 @@ files (Ed Law 2-d / FERPA).
 Physics-builder lab for Solvay Tech Ed. Not affiliated with Northway Games
 or Fantastic Contraption.
 
+Chip + changelog + `js/version.js` are one string. See `CHANGELOG.md`.
+
 ## Classroom URL (planned)
 
 **https://tw.kulibert.net/bertybots/**
@@ -52,9 +54,13 @@ Open `http://127.0.0.1:4174`.
 
 ## Versions
 
-| Version | Job |
-| --- | --- |
-| 0.0.1 | Repo + spec |
-| 0.1.0 | Playground + local save |
-| 0.2.0 | Original 12-level pack |
-| 0.3.0 | Student level editor |
+Live classroom = `BB 0.x.y`. Intern workshop = `BB 0.x.y-dN DEBUG`.
+One job per bump. Full notes: `CHANGELOG.md`.
+
+| Version | Channel | Job |
+| --- | --- | --- |
+| 0.0.1 | spec | Repo + law |
+| 0.1.0-dN | debug | Playground + local save |
+| 0.1.0 | live | Same job, cart-ready |
+| 0.2.0 | live | Original 12-level pack |
+| 0.3.0 | live | Student level editor |
