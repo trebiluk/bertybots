@@ -1,6 +1,6 @@
 # Berty's Botz changelog (structured)
 
-**Chip: BB 0.1.0** · 2026-09-17 · channel **live**  
+**Chip: BB 0.3.1** · 2026-09-22 · channel **live**  
 Source of truth: `js/version.js` + this file.  
 If the intern and an old zip disagree, the chip wins.
 
@@ -28,7 +28,13 @@ Rules:
 
 ---
 
-## Current train (0.1.x live)
+## Current train
+
+### 0.3.1 — Wide-screen playfield — 2026-09-22
+
+Play stage caps at 1280×760 and stays centered, with the ink letterbox on wide monitors.
+
+## 0.1.x
 
 ### 0.1.0 — Playable shop — 2026-09-17
 

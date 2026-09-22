@@ -14,7 +14,7 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; background: var(--ink); color: var(--text); font-family: var(--font); }
-#app { display: grid; grid-template-rows: auto 1fr 28px; height: 100%; }
+#app { display: grid; grid-template-rows: auto 1fr 28px; height: 100%; background: var(--ink); }
 .topbar {
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
   padding: 8px 10px; background: var(--navy); border-bottom: 2px solid #06101c;
@@ -36,7 +36,19 @@ html, body { margin: 0; height: 100%; background: var(--ink); color: var(--text)
 .btn.gold { background: var(--gold); color: #1a1200; }
 .btn.ok { background: var(--ok); color: #f4efe6; }
 .btn.ghost { background: transparent; }
-.stage { position: relative; min-height: 0; background: #0a1624; touch-action: none; }
+.stage {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
+  max-height: 760px;
+  justify-self: center;
+  align-self: center;
+  background: #0a1624;
+  touch-action: none;
+}
 #c { display: block; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
 .toast {
   position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
