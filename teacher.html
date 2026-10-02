@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Berty's Botz — Teacher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/app.css?v=0.19.0">
+</head>
+<body>
+  <div style="max-width:44rem;margin:2rem auto;padding:0 1rem 3rem;line-height:1.45">
+    <p><a href="index.html">← Shop</a></p>
+    <h1>Teacher notes · BB 0.19.0</h1>
+    <p>Phones: landscape. Tool icons stay in a slim bin — tap Tools only if you want labels. Builder / Observer live in Menu so they do not cover the crate.</p>
+
+    <h2>Class jobs</h2>
+    <p>The build jobs stay on every cart. They are not replaced. After a student clears the last one, this Chromebook can show extra class jobs. Upload a <code>.botzlevel.json</code>, check the alias, then <strong>Make permanent</strong>. Students cannot make a level permanent. No names.</p>
+    <p>
+      <input id="class-file" type="file" accept=".json,.botzlevel.json,application/json">
+    </p>
+    <p>
+      <button class="btn gold" id="class-make" type="button">Make permanent</button>
+    </p>
+    <ul id="class-list"></ul>
+    <script>
+      const KEY = "bb-class-jobs-v1";
+      function readJobs() {
+        try { const raw = JSON.parse(localStorage.getItem(KEY) || "[]"); return Array.isArray(raw) ? raw : []; }
+        catch (e) { return []; }
+      }
+      function writeJobs(jobs) { localStorage.setItem(KEY, JSON.stringify(jobs.slice(0, 8))); }
+      function paint() {
+        const list = document.getElementById("class-list");
+        list.replaceChildren();
+        for (const job of readJobs()) {
+          const li = document.createElement("li");
+          li.textContent = job.alias || "Level";
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "btn";
+          btn.textContent = "Remove";
+          btn.addEventListener("click", () => writeJobs(readJobs().filter((j) => j.id !== job.id)) || paint());
+          li.append(" ", btn);
+          list.append(li);
+        }
+        if (!list.childElementCount) list.textContent = "No class jobs on this Chromebook.";
+      }
+      document.getElementById("class-make").addEventListener("click", async () => {
+        const file = document.getElementById("class-file").files[0];
+        if (!file) { alert("Choose a .botzlevel.json first."); return; }
+        let doc;
+        try { doc = JSON.parse(await file.text()); }
+        catch (e) { alert("That file is not JSON."); return; }
+        if (!doc || doc.app !== "bertybots" || !doc.level) { alert("Not a Berty's Botz level."); return; }
+        const alias = String(doc.title || "level").replace(/\s+/g, " ").trim().slice(0, 48) || "level";
+        const jobs = readJobs().filter((j) => j.alias !== alias);
+        jobs.push({ id: "class-" + alias.toLowerCase().replace(/[^\w.-]+/g, "-").slice(0, 24), alias, doc });
+        writeJobs(jobs);
+        paint();
+      });
+      paint();
+    </script>
+    <p>Teach → Hang. Tap Open Shop, Forces, Measure, or Roll Out. Deck plays this live shop. Do not copy the files onto the TechWorks desk. Door tile on the Tech Room stays <a href="https://apps.kulibert.net/bertybots/">apps.kulibert.net/bertybots</a>. No names.</p>
+
+    <h2>Optional curriculum</h2>
+    <p>Build jobs stay the game. Turn curriculum on when the period is the design process, systems, measuring, or forces. It adds the six steps, Measure, and Forces. It does not replace the build jobs.</p>
+    <p><a href="https://apps.kulibert.net/bertybots/?curriculum=1">apps.kulibert.net/bertybots/?curriculum=1</a></p>
+    <p>Off again: <a href="https://apps.kulibert.net/bertybots/?curriculum=0">?curriculum=0</a>. Or Menu → More → Curriculum. Stays on this Chromebook. No names.</p>
+
+    <h2>Forces lesson</h2>
+    <p>Assign <strong>Forces</strong> when the period is mechanisms and forces. Play shows gravity on the crate. Logs tick for gravity, Drive torque (wheel-and-axle), then translation when the force is unbalanced. Same local XP as Measure. No names.</p>
+
+    <h2>Site Editor</h2>
+    <p>Shop Floor, Drop Zone, slabs, and extra crates live only in <strong>Site Editor</strong>. Roll Out and the other challenges lock the site so a pair cannot drag the Drop Zone closer. Assign Site Editor when the job is to design a course. Save a title only — no names.</p>
+
+    <h2>After a test</h2>
+    <p>Stop writes one line in the status bar: parked, stalled, fell, overshot, or missed. The orange trail stays as a dashed ghost so the pair can talk about the process path. Observer gets a yellow ring on the crate during Play. Intern debug: add <code>?debug=1</code> or tap backtick — chip, fps, last readout. No names.</p>
+
+    <h2>Class heat and pair chip</h2>
+    <p><strong>Heat</strong> on the HUD is how many crates got parked this period — a class count, not a roster. Chromebooks on this shop share the number. It is not a grade, not TechCash, not desk XP.</p>
+    <p>The stage chip is <strong>Builder</strong> / <strong>Observer</strong>. Builder places parts. Observer watches the crate (trail, Slow, Drop Zone). Swap without typing a name. Tools stay unlocked so a pair can share one cart.</p>
+    <p>Start of period: Menu → <strong>New period</strong>. Heat goes to 0 parked on every cart that hears it.</p>
+    <p>Projector shows the machine and the heat number. Never a kid rank list. Phone landscape still keeps course + Play + Stop + Menu; rank stays in Menu.</p>
+
+    <h2>Assign Measure (graph paper)</h2>
+    <p>Regular shop has no grid. When you want counting and units, assign <strong>Measure</strong> from the course list, or send:</p>
+    <p><a href="https://apps.kulibert.net/bertybots/?course=measure">apps.kulibert.net/bertybots/?course=measure</a></p>
+    <p>1 square = 1 unit. Tape tool: two clicks on a grid line. Three logs: Shop Floor width (8), Drop Zone width (4), gap between them (8). Completing it awards local XP. No names. They can still build after the logs.</p>
+
+    <h2>Say this out loud</h2>
+    <ol>
+      <li><strong>Ask</strong> the job: park the Bot Core crate in the Drop Zone.</li>
+      <li><strong>Imagine</strong> parts as a system, not as toys.</li>
+      <li><strong>Plan</strong> on the Shop Floor. Builder places. Observer watches the crate.</li>
+      <li><strong>Create</strong>, then <strong>Test</strong> (Play). Stop restores the shop.</li>
+      <li><strong>Improve</strong> one thing. Save a course title only — no names.</li>
+    </ol>
+
+    <h2>Tutorial (first four courses)</h2>
+    <p>How to shop is four beats, then <strong>Try Roll Out</strong>. Guide rail stays on unless they tap Guide off. Course coaches:</p>
+    <table>
+      <tr><th>Course</th><th>What the guide teaches</th></tr>
+      <tr><td>Roll Out</td><td>Straight process path. Starter cart is legal. Floor pusher.</td></tr>
+      <tr><td>Up the Curb</td><td>Output is up. A pusher is not a ramp. Height is a constraint.</td></tr>
+      <tr><td>Mind the Pit</td><td>Missing process path. Falling is a failed output.</td></tr>
+      <tr><td>The Wall</td><td>Blocked process. More Drive into a wall is still a wall.</td></tr>
+    </table>
+    <p>High Shelf, Around the Bend, Pair of Crates keep a shorter systems line. Starter cart is not the answer on walls or shelves.</p>
+
+    <h2>Shop handling</h2>
+    <ul>
+      <li>Drag a Drive/Roller from the toolbar onto a hub. Orange ring = it will join.</li>
+      <li>Grab any part to move it. It snaps to the nearest hub on release.</li>
+      <li>Steel / Ghost: press on a node and drag the bar. A tap is ignored.</li>
+      <li>Drive needs a Steel bar on the <strong>hub</strong> (center), not only the rim.</li>
+      <li>Ghost Bar ignores the machine, hits the world and the crate.</li>
+      <li>Stop always restores the shop. Slow-mo is for pointing at a fail.</li>
+      <li>Files: <code>.bertybots.json</code> — level title only, no names.</li>
+    </ul>
+
+    <h2>Standards snapshot</h2>
+    <p><strong>NYS MST Standard 5</strong> — students apply a complete design process (identify the need, generate options, model, test, iterate, communicate) and treat the machine as a technological system.</p>
+    <p><strong>ITEEA STL</strong> — Standard 2 (systems: input, process, output, feedback, constraints, subsystems). Standards 8–11 (attributes of design, engineering design, troubleshooting / experiment, apply the design process).</p>
+    <p><strong>CDOS</strong> — pair roles, file hygiene, talking about a fail with shop words (hub, constraint, payload, feedback).</p>
+    <p><strong>CTE / careers</strong> — test technician, mechanical designer, automation. Compare Shop Floor → Play → Improve to a real prototype loop.</p>
+
+    <h2>Systems words (student screen)</h2>
+    <table>
+      <tr><th>Systems</th><th>Shop</th></tr>
+      <tr><td>Input</td><td>Gravity, Drive-R / Drive-L</td></tr>
+      <tr><td>Process</td><td>Machine (Drive, Roller, Steel, Ghost)</td></tr>
+      <tr><td>Output</td><td>Crate in Drop Zone for one second</td></tr>
+      <tr><td>Feedback</td><td>Orange trail, Slow, DROP ZONE, Stop</td></tr>
+      <tr><td>Constraint</td><td>48 parts, Shop Floor, slabs, period time</td></tr>
+      <tr><td>Subsystem</td><td>Drive, structure, Ghost, payload</td></tr>
+    </table>
+
+    <h2>5-day sketch</h2>
+    <ol>
+      <li>Day 1 — How to shop + Roll Out. Exit ticket (oral): name input, process, output.</li>
+      <li>Day 2 — Up the Curb. Why the starter cart fails. One improvement logged out loud.</li>
+      <li>Day 3 — Mind the Pit. Observer calls the fail in Slow.</li>
+      <li>Day 4 — The Wall or student-authored course (Level layer).</li>
+      <li>Day 5 — Save file (title only) + 3-sentence “how this machine is a system.” Paper or talk. Not in the JSON.</li>
+    </ol>
+
+    <p>Live shop: <a href="https://apps.kulibert.net/bertybots/">apps.kulibert.net/bertybots</a></p>
+    <p><a href="privacy.html">Ed Law 2-d / privacy</a></p>
+  </div>
+</body>
+</html>
