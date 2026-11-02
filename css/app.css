@@ -1044,8 +1044,8 @@ a { color: var(--orange); }
 
 #rotate-gate { display: none !important; }
 #app { visibility: visible; pointer-events: auto; }
-/* One ☰. The shop Menu stays top-left. The Hub bar must not add a second one. */
-html:not(.kb-framed) .kb-bar { display: none !important; }
+/* One ☰. The shop Menu stays top-left. The Hub bar folds into Berty's head (top-right, game mode) instead of
+   taking a row; tap the head for Home, Menu, sign-in and Help. */
 html:not(.kb-framed) body.kb-on { padding-top: 0 !important; }
 #btn-crew.kb-menu-dupe { display: inline-flex !important; }
 
